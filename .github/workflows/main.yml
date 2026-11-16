@@ -1,1 +1,31 @@
-name: Build unsigned IPA for TrollStore<br/><br/>on:<br/>  workflow_dispatch:<br/>  push:<br/>    branches: [main, master]<br/><br/>jobs:<br/>  build:<br/>    runs-on: macos-14<br/>    timeout-minutes: 30<br/><br/>    steps:<br/>      - name: 检出代码<br/>        uses: actions/checkout@v4<br/><br/>      - name: 查看 Xcode 版本<br/>        run: xcodebuild -version<br/><br/>      - name: 构建未签名 .ipa<br/>        run: |<br/>          chmod +x build.sh<br/>          bash build.sh<br/><br/>      - name: 上传 .ipa 附件<br/>        uses: actions/upload-artifact@v4<br/>        with:<br/>          name: CarKey-unsigned-ipa<br/>          path: CarKey-unsigned.ipa<br/>          if-no-files-found: error<br/>          retention-days: 30<br/>
+name: Build unsigned IPA for TrollStore
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+
+jobs:
+  build:
+    runs-on: macos-14
+    timeout-minutes: 30
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 查看 Xcode 版本
+        run: xcodebuild -version
+
+      - name: 构建未签名 .ipa
+        run: |
+          chmod +x build.sh
+          bash build.sh
+
+      - name: 上传 .ipa 附件
+        uses: actions/upload-artifact@v4
+        with:
+          name: CarKey-unsigned-ipa
+          path: CarKey-unsigned.ipa
+          if-no-files-found: error
+          retention-days: 30
