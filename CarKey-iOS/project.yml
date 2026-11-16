@@ -1,0 +1,48 @@
+# ============================================================
+# XcodeGen 工程描述（可选，便于人类阅读和二次修改）
+# 仓库里已附带生成好的 CarKey.xcodeproj，直接 xcodebuild 即可，
+# 不需要安装本工具。若要改配置后重新生成：
+#   brew install xcodegen && xcodegen generate
+# ============================================================
+name: CarKey
+
+options:
+  bundleIdPrefix: com.carkey.ios
+  deploymentTarget: "14.0"
+  xcodeVersion: "15"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SDKROOT: iphoneos
+    SUPPORTED_PLATFORMS: iphoneos
+    SWIFT_VERSION: "5.0"
+    TARGETED_DEVICE_FAMILY: "1,2"
+    GENERATE_INFOPLIST_FILE: NO
+    # ---- 关键：不签名，产出 TrollStore 可直接安装的 .app ----
+    CODE_SIGNING_ALLOWED: NO
+    CODE_SIGNING_REQUIRED: NO
+    CODE_SIGN_IDENTITY: ""
+    DEVELOPMENT_TEAM: ""
+    ENABLE_BITCODE: NO
+    CLANG_ENABLE_MODULES: YES
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+    SUPPORTS_MACCATALYST: NO
+
+targets:
+  CarKey:
+    type: application
+    platform: iOS
+    sources:
+      - path: CarKey
+        excludes:
+          - "**/Info.plist"
+          - "**/*.entitlements"
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.carkey.ios.key
+        INFOPLIST_FILE: CarKey/Info.plist
+        CODE_SIGN_ENTITLEMENTS: CarKey/CarKey.entitlements
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        PRODUCT_NAME: CarKey

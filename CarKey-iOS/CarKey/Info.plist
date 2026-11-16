@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>zh_CN</string>
+	<key>CFBundleDisplayName</key>
+	<string>车钥匙</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+
+	<!-- 启动屏：使用 Asset Catalog 中的深色，避免白屏闪一下 -->
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>LaunchBackground</string>
+	</dict>
+
+	<!-- 只支持竖屏，保证与原型一致的版式 -->
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UIRequiresFullScreen</key>
+	<true/>
+
+	<!-- 状态栏：深色背景配白色文字 -->
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
+
+	<!-- 蓝牙：距离感应 / 控车指令 -->
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>用于连接车载蓝牙钥匙模块，实现靠近自动解锁与远程控车</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>用于连接车载蓝牙钥匙模块</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>bluetooth-central</string>
+	</array>
+
+	<!-- NFC：备用钥匙（需额外注入 entitlement 才会启用） -->
+	<key>NFCReaderUsageDescription</key>
+	<string>用于读取 NFC 卡片作为备用车钥匙</string>
+
+	<!-- iBeacon 后台区域监听预留：比纯 CoreBluetooth 后台扫描更可靠 -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>用于检测车辆钥匙模块的靠近与离开，实现自动解锁与上锁</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>用于在应用未打开时检测车辆钥匙模块的靠近与离开</string>
+
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>arm64</string>
+	</array>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
+</dict>
+</plist>
